@@ -190,6 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   turnSmoothTime: 0.02
+  gravity: -9.81
 --- !u!1 &281994577
 GameObject:
   m_ObjectHideFlags: 0

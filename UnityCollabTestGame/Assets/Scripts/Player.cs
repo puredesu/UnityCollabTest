@@ -9,6 +9,10 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float speed = 10f;
     [SerializeField] private float turnSmoothTime = 0.02f;
+    [SerializeField] private float gravity = -9.81f;
+
+    private Vector3 velocity;
+
     private float turnSmoothVelocity;
     // Start is called before the first frame update
     void Start()
@@ -40,6 +44,9 @@ public class Player : MonoBehaviour
             controller.Move(direction.normalized * speed * Time.deltaTime);
         }
 
+        // Gravity: delta Y = 1/2 * gravity * time^2
+        velocity.y += gravity;
+        controller.Move(velocity/2 * Mathf.Pow(Time.deltaTime, 2));
 
     }
 }
