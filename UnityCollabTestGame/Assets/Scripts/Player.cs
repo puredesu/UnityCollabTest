@@ -45,8 +45,14 @@ public class Player : MonoBehaviour
         }
 
         // Gravity: delta Y = 1/2 * gravity * time^2
-        velocity.y += gravity;
-        controller.Move(velocity/2 * Mathf.Pow(Time.deltaTime, 2));
-
+        if (controller.isGrounded)
+        {
+            velocity.y = 0;
+        }
+        else
+        {
+            velocity.y += gravity;
+            controller.Move(velocity / 2 * Mathf.Pow(Time.deltaTime, 2));
+        }
     }
 }
