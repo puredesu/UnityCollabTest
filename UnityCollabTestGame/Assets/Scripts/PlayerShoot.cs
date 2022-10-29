@@ -7,7 +7,7 @@ public class PlayerShoot : MonoBehaviour
 
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
-    [SerializeField] private float cooldown = 0.3f;
+    [SerializeField] private float cooldown = 0.2f;
     private bool isBulletReady = true;
 
     // Update is called once per frame

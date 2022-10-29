@@ -94,7 +94,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 735749433254276461}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -112,6 +112,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1911382477809141557}
+  bulletHitEffect: {fileID: 7914764081873519293, guid: 9da6f4e2b2a7d4e01b6509f7a1099fb2,
+    type: 3}
   speed: 50
   lifeTime: 5
 --- !u!54 &1911382477809141557
