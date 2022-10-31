@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
 
     private CharacterController controller;
+    private GameManager manager;
 
     [SerializeField] private Camera mainCamera; // Raycast from mouse to world space
 
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        manager = GameManager.Instance;
     }
 
     // Update is called once per frame
@@ -73,6 +75,7 @@ public class Player : MonoBehaviour
         {
             Destroy(gameObject);
             SceneManager.LoadScene("SampleScene");
+            manager.Score = 0;
         }
     }
 }

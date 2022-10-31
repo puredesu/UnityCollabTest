@@ -32,6 +32,7 @@ public class Bullet : MonoBehaviour
             Destroy(other.gameObject);
             GameObject hitEffect = Instantiate(enemyHitEffect, gameObject.transform.position, gameObject.transform.rotation);
             Destroy(hitEffect, 0.5f);
+            GameManager.Instance.Score += 1;
         }
     }
 }
