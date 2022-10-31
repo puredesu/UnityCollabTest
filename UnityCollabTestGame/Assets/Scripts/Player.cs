@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -63,6 +64,15 @@ public class Player : MonoBehaviour
         {
             velocity.y += gravity;
             controller.Move(velocity / 2 * Mathf.Pow(Time.deltaTime, 2));
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Destroy(gameObject);
+            SceneManager.LoadScene("SampleScene");
         }
     }
 }

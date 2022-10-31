@@ -16,6 +16,9 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        agent.destination = playerObject.transform.position;
+        if (playerObject != null)
+        {
+            agent.destination = playerObject.transform.position;
+        }
     }
 }
