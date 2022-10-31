@@ -7,11 +7,15 @@ public class EnemyAI : MonoBehaviour
 {
 
     [SerializeField] private NavMeshAgent agent;
-    [SerializeField] private Transform target;
+    private GameObject playerObject;
 
+    private void Start()
+    {
+        playerObject = GameObject.FindGameObjectWithTag("Player");
+    }
     // Update is called once per frame
     void Update()
     {
-        agent.destination = target.position;
+        agent.destination = playerObject.transform.position;
     }
 }
