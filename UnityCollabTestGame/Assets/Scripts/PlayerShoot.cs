@@ -10,13 +10,28 @@ public class PlayerShoot : MonoBehaviour
 
     // Default values
     [SerializeField] private float fireRate = 5f;
+    [SerializeField] private float reloadTime = 2f;
+    [SerializeField] private int magazineSize = 10;
 
+    private int bulletsLeft;
     private bool isBulletReady = true;
+    private bool isReloading = false;
+
+    private void Start()
+    {
+        bulletsLeft = magazineSize;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+        Debug.Log(bulletsLeft);
+        if((bulletsLeft == 0 || Input.GetKey(KeyCode.R)) && !isReloading)
+        {
+            Reload();
+        }
+
+        if (Input.GetKey(KeyCode.Mouse0) && !isReloading)
         {
             Shoot();
         }
@@ -29,13 +44,29 @@ public class PlayerShoot : MonoBehaviour
             return;
         }
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        StartCoroutine(StartCooldown());
+        bulletsLeft--;
+        StartCoroutine(bulletCooldown());
     }
 
-    private IEnumerator StartCooldown()
+    private void Reload()
+    {
+        StartCoroutine(reloadCooldown());
+        bulletsLeft = magazineSize;
+    }
+
+    private IEnumerator bulletCooldown()
     {
         isBulletReady = false;
         yield return new WaitForSeconds(1/fireRate);
+        isBulletReady = true;
+    }
+
+    private IEnumerator reloadCooldown()
+    {
+        isReloading = true;
+        isBulletReady = false;
+        yield return new WaitForSeconds(reloadTime);
+        isReloading = false;
         isBulletReady = true;
     }
 }

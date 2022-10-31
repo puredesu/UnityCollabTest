@@ -462,7 +462,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 735749433254276461, guid: ef909ad9c75e64541a223f1eb05a0b8a,
     type: 3}
   firePoint: {fileID: 1615975372}
-  cooldown: 0.2
+  fireRate: 5
+  reloadTime: 2
+  magazineSize: 3
 --- !u!1 &281994577
 GameObject:
   m_ObjectHideFlags: 0
