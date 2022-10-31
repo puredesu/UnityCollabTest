@@ -130,5 +130,7 @@ MonoBehaviour:
   rb: {fileID: 1911382477809141557}
   bulletHitEffect: {fileID: 7914764081873519293, guid: 9da6f4e2b2a7d4e01b6509f7a1099fb2,
     type: 3}
+  enemyHitEffect: {fileID: 3355561899971629429, guid: cb73c4034bb334c39b3714db99e0d00b,
+    type: 3}
   speed: 50
   lifeTime: 5

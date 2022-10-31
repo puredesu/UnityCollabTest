@@ -65,4 +65,12 @@ public class Player : MonoBehaviour
             controller.Move(velocity / 2 * Mathf.Pow(Time.deltaTime, 2));
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            Destroy(other.gameObject);
+        }
+    }
 }
