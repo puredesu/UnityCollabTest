@@ -9,7 +9,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private Transform firePoint;
 
     // Default values
-    [SerializeField] private float cooldown = 0.2f;
+    [SerializeField] private float fireRate = 5f;
 
     private bool isBulletReady = true;
 
@@ -35,7 +35,7 @@ public class PlayerShoot : MonoBehaviour
     private IEnumerator StartCooldown()
     {
         isBulletReady = false;
-        yield return new WaitForSeconds(cooldown);
+        yield return new WaitForSeconds(1/fireRate);
         isBulletReady = true;
     }
 }
