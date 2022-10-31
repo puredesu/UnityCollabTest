@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerShoot : MonoBehaviour
 {
+
+    [SerializeField] private TextMeshProUGUI ammoText;
 
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
@@ -25,38 +28,32 @@ public class PlayerShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(bulletsLeft);
-        if((bulletsLeft == 0 || Input.GetKey(KeyCode.R)) && !isReloading)
-        {
-            Reload();
-        }
+        if((bulletsLeft == 0 || Input.GetKey(KeyCode.R))) Reload();
 
-        if (Input.GetKey(KeyCode.Mouse0) && !isReloading)
-        {
-            Shoot();
-        }
+        if (Input.GetKey(KeyCode.Mouse0)) Shoot();
+
+        ammoText.text = "Ammo: " + bulletsLeft + "/" + magazineSize;
+        if (isReloading) ammoText.text += "\nreloading...";
     }
 
     private void Shoot()
     {
-        if (!isBulletReady)
+        if (isBulletReady && !isReloading)
         {
-            return;
+            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            StartCoroutine(bulletCooldown());
         }
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        bulletsLeft--;
-        StartCoroutine(bulletCooldown());
     }
 
     private void Reload()
     {
-        StartCoroutine(reloadCooldown());
-        bulletsLeft = magazineSize;
+        if (!isReloading) StartCoroutine(reloadCooldown());
     }
 
     private IEnumerator bulletCooldown()
     {
         isBulletReady = false;
+        bulletsLeft--;
         yield return new WaitForSeconds(1/fireRate);
         isBulletReady = true;
     }
@@ -65,7 +62,9 @@ public class PlayerShoot : MonoBehaviour
     {
         isReloading = true;
         isBulletReady = false;
+        bulletsLeft = 0;
         yield return new WaitForSeconds(reloadTime);
+        bulletsLeft = magazineSize;
         isReloading = false;
         isBulletReady = true;
     }
